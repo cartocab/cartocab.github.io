@@ -20,7 +20,7 @@ th, td {
 .ol-popup {
     display: block;
     position: absolute;
-    background-color: white;
+    background-color: rgba(255,255,255,0.7);
     -moz-box-shadow: 0 1px 4px rgba(0,0,0,0.2);
     -webkit-filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
     filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));
