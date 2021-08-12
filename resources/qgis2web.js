@@ -418,6 +418,7 @@ var onSingleClick = function(evt) {
 
     map.on('pointermove', function(evt) {
         if (evt.dragging) {
+            $(element).popover('destroy');
             return;
         }
         if (measuring) {
