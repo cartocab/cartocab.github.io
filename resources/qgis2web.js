@@ -158,6 +158,7 @@ var highlight;
 var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
 var onPointerMove = function(evt) {
     if (!doHover && !doHighlight) {
+        $(element).popover('destroy');
         return;
     }
     var pixel = map.getEventPixel(evt.originalEvent);
@@ -271,7 +272,7 @@ var onPointerMove = function(evt) {
 
                     highlightStyle = new ol.style.Style({
                         stroke: new ol.style.Stroke({
-                            color: '#ffffcf',
+                            color: 'rgba(255,0,0,0.4)',
                             lineDash: null,
                             width: featureWidth
                         })
