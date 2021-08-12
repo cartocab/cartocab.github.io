@@ -176,7 +176,6 @@ var highlight;
 var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
 var onPointerMove = function(evt) {
     if (!doHover && !doHighlight) {
-        $(element).popover('destroy');
         return;
     }
     var pixel = map.getEventPixel(evt.originalEvent);
