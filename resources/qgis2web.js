@@ -151,7 +151,7 @@ var featureOverlay = new ol.layer.Vector({
     updateWhileInteracting: true // optional, for instant visual feedback
 });
 
-var doHighlight = false;
+var doHighlight = true;
 var doHover = true;
 
 var feature_onClick;
@@ -298,7 +298,7 @@ var onPointerMove = function(evt) {
                 } else {
                     highlightStyle = new ol.style.Style({
                         fill: new ol.style.Fill({
-                            color: '#ffffcf'
+                            color: 'rgba(255,255,255,0.3)'
                         })
                     })
                 }
