@@ -674,12 +674,15 @@ var geolocateOverlay = new ol.layer.Vector({
 });
 
 geolocation.setTracking(true);
+map.setView(new ol.View({
+  center: geolocation.getPosition(),
+  zoom: 15
 
 
 var geocoder = new Geocoder('nominatim', {
   provider: 'osm',
   lang: 'en-US',
-  placeholder: 'Search for ...',
+  placeholder: 'Rechercher ...',
   limit: 5,
   keepOpen: true
 });
