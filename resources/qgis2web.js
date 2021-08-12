@@ -154,6 +154,24 @@ var featureOverlay = new ol.layer.Vector({
 var doHighlight = false;
 var doHover = true;
 
+var feature_onClick;
+map.on('click', function(evt) {
+
+    feature_onClick = map.forEachFeatureAtPixel(evt.pixel, function(feature, layer) {
+        console.log(feature);
+        return feature;
+      });
+
+
+  if (feature_onClick) {
+    var content = document.getElementById('popup-content');
+    console.log(feature_onClick.getProperties().name);
+    overlay.setPosition(evt.coordinate);
+     content.innerHTML = feature_onClick.getProperties().name;
+     container.style.display = 'block';
+     }
+});
+
 var highlight;
 var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
 var onPointerMove = function(evt) {
