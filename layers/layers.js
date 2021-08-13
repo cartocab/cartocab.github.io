@@ -84,7 +84,7 @@ lyr_calc_2.set('fieldImages', {'fid': 'TextEdit', 'ID': 'TextEdit', 'CODE_SIREN'
 lyr_PLU_3.set('fieldImages', {'fid': 'Hidden', 'IDZONE': 'Hidden', 'TYPEZONE': 'Hidden', 'Acronyme des zones': 'TextEdit', 'LIBELONG': 'TextEdit', 'ZONE_URBA copier_NOMFIC': 'Hidden', 'Réglement de la zone': 'TextEdit', 'DESTDOMI': 'Hidden', 'LIBELLE': 'Hidden', 'plu': 'Hidden', });
 lyr_PPRL_4.set('fieldImages', {'fid': 'Hidden', 'id': 'Hidden', 'pprl': 'TextEdit', 'URL': 'TextEdit', 'URL_serv': 'Hidden', });
 lyr_calc_2.set('fieldLabels', {});
-lyr_PLU_3.set('fieldLabels', {'Acronyme des zones': 'header label', 'Descriptif de la zone du PLU': 'header label', 'Réglement de la zone': 'header label', });
+lyr_PLU_3.set('fieldLabels', {'Acronyme des zones': 'header label', 'Nom': 'header label', 'Réglement de la zone': 'header label', });
 lyr_PPRL_4.set('fieldLabels', {'pprl': 'header label', 'URL': 'header label', });
 lyr_PPRL_4.on('precompose', function(evt) {
     evt.context.globalCompositeOperation = 'normal';
