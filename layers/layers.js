@@ -78,13 +78,13 @@ var group_Fonddecarte = new ol.layer.Group({
 lyr_F4Map2D_0.setVisible(true);lyr_GoogleSatellite_1.setVisible(true);lyr_calc_2.setVisible(true);lyr_PLU_3.setVisible(false);lyr_PPRL_4.setVisible(true);
 var layersList = [group_Fonddecarte,lyr_PLU_3,lyr_PPRL_4];
 lyr_calc_2.set('fieldAliases', {'fid': 'fid', 'ID': 'ID', 'CODE_SIREN': 'CODE_SIREN', 'NATURE': 'NATURE', 'NOM': 'NOM', 'DATE_CREAT': 'DATE_CREAT', 'DATE_MAJ': 'DATE_MAJ', 'DATE_APP': 'DATE_APP', 'DATE_CONF': 'DATE_CONF', 'ID_AUT_ADM': 'ID_AUT_ADM', });
-lyr_PLU_3.set('fieldAliases', {'fid': 'fid', 'IDZONE': 'ID', 'TYPEZONE': 'TYPEZONE', 'Acronyme des zones': 'Acronyme des zones', 'LIBELONG': 'Description de la zone', 'ZONE_URBA copier_NOMFIC': 'ZONE_URBA copier_NOMFIC', 'Réglement de la zone': 'Réglement de la zone', 'DESTDOMI': 'DESTDOMI', 'LIBELLE': 'LIBELLE', 'plu': 'plu', });
+lyr_PLU_3.set('fieldAliases', {'fid': 'fid', 'IDZONE': 'ID', 'TYPEZONE': 'TYPEZONE', 'Acronyme des zones': 'Acronyme des zones', 'LIBELONG': 'Nom de la zone', 'ZONE_URBA copier_NOMFIC': 'ZONE_URBA copier_NOMFIC', 'Réglement de la zone': 'Réglement de la zone', 'DESTDOMI': 'DESTDOMI', 'LIBELLE': 'LIBELLE', 'plu': 'plu', });
 lyr_PPRL_4.set('fieldAliases', {'fid': 'fid', 'id': 'id', 'pprl': 'Zonage du PPRL', 'URL': 'Réglementation du PPRL', 'URL_serv': 'URL_serv', });
 lyr_calc_2.set('fieldImages', {'fid': 'TextEdit', 'ID': 'TextEdit', 'CODE_SIREN': 'TextEdit', 'NATURE': 'TextEdit', 'NOM': 'TextEdit', 'DATE_CREAT': 'TextEdit', 'DATE_MAJ': 'TextEdit', 'DATE_APP': 'DateTime', 'DATE_CONF': 'DateTime', 'ID_AUT_ADM': 'TextEdit', });
 lyr_PLU_3.set('fieldImages', {'fid': 'Hidden', 'IDZONE': 'Hidden', 'TYPEZONE': 'Hidden', 'Acronyme des zones': 'TextEdit', 'LIBELONG': 'TextEdit', 'ZONE_URBA copier_NOMFIC': 'Hidden', 'Réglement de la zone': 'TextEdit', 'DESTDOMI': 'Hidden', 'LIBELLE': 'Hidden', 'plu': 'Hidden', });
 lyr_PPRL_4.set('fieldImages', {'fid': 'Hidden', 'id': 'Hidden', 'pprl': 'TextEdit', 'URL': 'TextEdit', 'URL_serv': 'Hidden', });
 lyr_calc_2.set('fieldLabels', {});
-lyr_PLU_3.set('fieldLabels', {'Acronyme des zones': 'header label', 'Nom': 'header label', 'Réglement de la zone': 'header label', });
+lyr_PLU_3.set('fieldLabels', {'Acronyme des zones': 'header label', 'LIBELONG': 'header label', 'Réglement de la zone': 'header label', });
 lyr_PPRL_4.set('fieldLabels', {'pprl': 'header label', 'URL': 'header label', });
 lyr_PPRL_4.on('precompose', function(evt) {
     evt.context.globalCompositeOperation = 'normal';

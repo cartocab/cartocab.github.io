@@ -10,6 +10,7 @@ var geolocateControl = (function (Control) {
                 map.removeLayer(geolocateOverlay);
                 isTracking = false;
           } else if (geolocation.getTracking()) {
+zoom:5;
                 map.addLayer(geolocateOverlay);
                 map.getView().setCenter(geolocation.getPosition());
                 isTracking = true;
@@ -82,19 +83,21 @@ var sketch;
 closer.onclick = function() {
     container.style.display = 'none';
     closer.blur();
-    return false;
+    return true;
 };
 var overlayPopup = new ol.Overlay({
     element: container
+
+
 });
 
 var expandedAttribution = new ol.control.Attribution({
-    collapsible: false
+    collapsible: true
 });
 
 var map = new ol.Map({
     controls: ol.control.defaults({attribution:false}).extend([
-        expandedAttribution,new ol.control.ScaleLine({bar:true}),new measureControl(),new geolocateControl()
+        expandedAttribution,new measureControl(),new geolocateControl()
     ]),
     target: document.getElementById('map'),
     renderer: 'canvas',
@@ -111,7 +114,7 @@ layerSwitcher.hidePanel = function() {};
 layerSwitcher.showPanel();
 
 
-map.getView().fit([-14973.131679, 6322579.135231, -10343.897101, 6325147.503329], map.getSize());
+map.getView().fit([-14973.131679, 6322579.135231, -10343.897101, 6325147.503329], map.getSize(6));
 
 var NO_POPUP = 0
 var ALL_FIELDS = 1
@@ -136,19 +139,19 @@ var featureOverlay = new ol.layer.Vector({
     map: map,
     source: new ol.source.Vector({
         features: collection,
-        useSpatialIndex: false // optional, might improve performance
+        useSpatialIndex: true // optional, might improve performance
     }),
     style: [new ol.style.Style({
         stroke: new ol.style.Stroke({
-            color: '#f00',
-            width: 1
+            color: 'white',
+            width: 5
         }),
         fill: new ol.style.Fill({
             color: 'rgba(255,0,0,0.1)'
         }),
     })],
-    updateWhileAnimating: true, // optional, for instant visual feedback
-    updateWhileInteracting: true // optional, for instant visual feedback
+    updateWhileAnimating: false, // optional, for instant visual feedback
+    updateWhileInteracting: false, // optional, for instant visual feedback
 });
 
 var doHighlight = true;
@@ -278,7 +281,7 @@ var onPointerMove = function(evt) {
                     highlightStyle = new ol.style.Style({
                         image: new ol.style.Circle({
                             fill: new ol.style.Fill({
-                                color: "#ffffcf"
+                                color: "white"
                             }),
                             radius: radius
                         })
@@ -287,18 +290,19 @@ var onPointerMove = function(evt) {
 
                     var featureWidth = styleDefinition.split('width')[1].split(' ')[1].replace('})','');
 
-                    highlightStyle = new ol.style.Style({
+                   highlightStyle = new ol.style.Style({
                         stroke: new ol.style.Stroke({
-                            color: 'rgba(255,0,0,0.2)',
-                            lineDash: null,
-                            width: featureWidth
-                        })
-                    });
+					width: '30',
+                            color:'rgba(255, 255, 255, 1)',
+lineDash:[.4,5],        })
+
+                    })
 
                 } else {
                     highlightStyle = new ol.style.Style({
                         fill: new ol.style.Fill({
-                            color: 'rgba(255,255,255,0.2)'
+LineDash:[4,4],
+                            color: 'rgba(255, 255, 255, 0.2)',
                         })
                     })
                 }
@@ -310,13 +314,15 @@ var onPointerMove = function(evt) {
     }
 
     if (doHover) {
-        if (popupText) {
+        if (popupText){
             overlayPopup.setPosition(coord);
             content.innerHTML = popupText;
-            container.style.display = 'block';        
+            container.style.display = 'block';
+visibility: hidden;        
         } else {
-            container.style.display = 'none';
+            container.style.display = 'block';
             closer.blur();
+visibility: hidden;
         }
     }
 };
@@ -340,7 +346,7 @@ var onSingleClick = function(evt) {
             var doPopup = false;
             for (k in layer.get('fieldImages')) {
                 if (layer.get('fieldImages')[k] != "Hidden") {
-                    doPopup = true;
+                    doPopup = false;
                 }
             }
             currentFeature = feature;
@@ -436,7 +442,7 @@ var onSingleClick = function(evt) {
 
     map.on('pointermove', function(evt) {
         if (evt.dragging) {
-            $(element).popover('destroy');
+$(element).popover('destroy');
             return;
         }
         if (measuring) {
@@ -513,11 +519,11 @@ var measureLayer = new ol.layer.Vector({
     source: source,
     style: new ol.style.Style({
         fill: new ol.style.Fill({
-            color: 'rgba(255, 255, 255, 0.2)'
+            color: 'rgba(255, 255, 255, 1)'
         }),
         stroke: new ol.style.Stroke({
             color: '#ffcc33',
-            width: 3
+            width: 4
         }),
         image: new ol.style.Circle({
             radius: 7,
@@ -541,7 +547,7 @@ function addInteraction() {
         color: 'rgba(255, 255, 255, 0.2)'
       }),
       stroke: new ol.style.Stroke({
-        color: 'rgba(0, 0, 0, 0.5)',
+        color: 'rgba(255, 255, 255, 1)',
         lineDash: [10, 10],
         width: 2
       }),
@@ -669,13 +675,13 @@ geolocation.on('change:accuracyGeometry', function() {
 var positionFeature = new ol.Feature();
 positionFeature.setStyle(new ol.style.Style({
   image: new ol.style.Circle({
-    radius: 6,
+    radius: 5,
     fill: new ol.style.Fill({
-      color: '#3399CC'
+      color: '#f5fa73'
     }),
     stroke: new ol.style.Stroke({
       color: '#fff',
-      width: 2
+      width: 3
     })
   })
 }));
@@ -694,10 +700,11 @@ var geolocateOverlay = new ol.layer.Vector({
 
 geolocation.setTracking(true);
 
+
 var geocoder = new Geocoder('nominatim', {
   provider: 'osm',
   lang: 'en-US',
-  placeholder: 'Rechercher ...',
+  placeholder: 'Search for ...',
   limit: 5,
   keepOpen: true
 });
@@ -723,3 +730,4 @@ map.on("rendercomplete", function(evt) {
         attributionComplete = true;
     }
 })
+ 
